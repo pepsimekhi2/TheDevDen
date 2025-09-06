@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/verify",
+      "destination": "/index.html",
+      "permanent": false
+    }
+  ]
+}
