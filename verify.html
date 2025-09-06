@@ -258,6 +258,14 @@
                     })
                 });
                 
+                // Check if response is actually JSON
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    console.error('Server returned non-JSON response:', response.status, response.statusText);
+                    showError('Server is not responding correctly. Please ensure the backend is running.');
+                    return;
+                }
+                
                 const result = await response.json();
                 
                 if (result.success) {
@@ -267,7 +275,11 @@
                 }
             } catch (error) {
                 console.error('Callback error:', error);
-                showError('Verification failed. Please try again.');
+                if (error.message.includes('JSON')) {
+                    showError('Backend server is not running or not configured correctly.');
+                } else {
+                    showError('Verification failed. Please ensure the server is running.');
+                }
             }
         }
     </script>
