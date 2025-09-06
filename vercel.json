@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/verify",
-      "destination": "/index.html",
+      "destination": "/verify.html",
       "permanent": false
     }
   ]
